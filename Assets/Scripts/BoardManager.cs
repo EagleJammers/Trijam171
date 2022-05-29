@@ -13,25 +13,30 @@ public class BoardManager : MonoBehaviour
     private int dimension = 0;
     private float minePercent = .20f;
     private float minePresent = 0f;
+    private float percentbytile;
+    private int tilepermine;
+    private int tilesunmined;
+    private int px, py;
 
-    private float percentbytile = (float) 1 / (dimension * dimension);
-    private int tilepermine = (int) (dimension * dimension * minePercent);
 
     // Start is called before the first frame update
     void Start()
     {
       //Instantiate Player then assign it to p
       //Place it somewhere random inside the Board
-      int px = Random.Range(0, dimension);
-      int py = Random.Range(0, dimension);
+      px = Random.Range(0, dimension);
+      py = Random.Range(0, dimension);
 
-      int tilesunmined = 0;
+
+      percentbytile = (float) 1 / (dimension * dimension);
+      tilepermine = (int) (dimension * dimension * minePercent);
+      tilesunmined = 0;
       //Instantiate Mine objects and insert them into Board array
       for(int x = 0; x < dimension; x++)
       {
         for(int y = 0; y < dimension; y++)
         {
-          Instantiate(tObj, newVector2(0, 0), Quaternion.identity);
+          Instantiate(tObj, new Vector2(0, 0), Quaternion.identity);
           //Board[x][y] = t
           //Move that tile to some place on the UI based on screen size vs how many we have
 
@@ -43,7 +48,6 @@ public class BoardManager : MonoBehaviour
             //if set to false
           //if tiles unmined >= tiles permine, set tilesunmined = 0, set mine flag to true
           //else increase tilesunmined by 1
-          Debug.log("");
 
         }
       }
