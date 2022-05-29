@@ -38,16 +38,21 @@ public class Tile : MonoBehaviour
         return true;
     }
 
+    public void setMine()
+    {
+      this.hasMine = true;
+    }
+
     public void DisplayValueToggle()
     {
        isVisible = !isVisible;
         FlagSprite.SetActive(isVisible);
-       
+
     }
 
     public void FlagToggle()
     {
-        
+
         hasFlag = !hasFlag;
         FlagSprite.SetActive(hasFlag);
     }

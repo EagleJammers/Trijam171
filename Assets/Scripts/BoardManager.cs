@@ -11,9 +11,10 @@ public class BoardManager : MonoBehaviour
     private Tile tObj;
 
     private float minePercent = .20f;
-    private float minePresent = 0f;
+    private float minesPresent = 0f;
     private int tilesunmined = 0;
     private int dimension = 5;
+    public float stepsize = 1f;
 
     private float percentbytile;
     private int tilepermine;
@@ -24,34 +25,13 @@ public class BoardManager : MonoBehaviour
       Board = new Tile[dimension,dimension];
       percentbytile = (float) 1 / (dimension * dimension);
       tilepermine = (int) (dimension * dimension * minePercent);
-
-      //Instantiate Player then assign it to p
-      p = Object.Instantiate(p, new Vector2(0,0), Quaternion.identity) as PlayerMovement;
-      //Place it somewhere random inside the Board
       int px = Random.Range(0, dimension);
       int py = Random.Range(0, dimension);
 
-      //Instantiate Mine objects and insert them into Board array
-      for(int x = 0;x < dimension;x++)
-      {
-        for(int y = 0;y < dimension;y++)
-        {
+      //Instantiate Player then assign it to p
+      p = Object.Instantiate(p, new Vector2(0,0), Quaternion.identity) as PlayerMovement;
 
-          Board[x, y] = Object.Instantiate(tObj, new Vector2(0, 0), Quaternion.identity) as Tile;
-
-          //Move that tile to some place on the UI based on screen size vs how many we have
-
-          //Set Mine flag to true or false based on RNG
-            //if set to true
-              //minepresent += percentbytile
-              //tilesunmined = 0;
-
-            //if set to false
-          //if tiles unmined >= tiles permine, set tilesunmined = 0, set mine flag to true
-          //else increase tilesunmined by 1
-
-        }
-      }
+      SpawnMines();
     }
 
     // Update is called once per frame
@@ -60,7 +40,45 @@ public class BoardManager : MonoBehaviour
 
     }
 
-    public bool updatePlayer()
+    private void SpawnMines(){
+      //Instantiate Mine objects and insert them into Board array
+      for(int x = 0;x < dimension;x++)
+      {
+        for(int y = 0;y < dimension;y++)
+        {
+          Board[x, y] = Object.Instantiate(tObj, new Vector2(0, 0), Quaternion.identity) as Tile;
+
+          //TODO Scale and Move that tile to some place on the UI based on screen size vs how many we have
+        }
+      }
+
+      //Loop to increment tile numbers and assign mines
+      for (int x = 0; x < dimension; x++)
+      {
+        for (int y = 0; y < dimension; y++)
+        {
+          //Set Mine flag to true or false based on RNG
+          //if comparison is true
+          if (Random.Range(0f, 1f) < minePercent || tilesunmined >= tilepermine)
+          {
+              minesPresent += percentbytile;
+              tilesunmined = 0;
+              Board[x, y].setMine();
+
+              // TODO increment neightbor tiles
+          }
+          //if comparison is false
+          else
+          {
+
+              //increase tilesunmined by 1
+              tilesunmined++;
+          }
+        }
+      }
+    }
+
+    public bool UpdatePlayer()
     {
       return true;
       //return true if movement is valid
@@ -73,6 +91,11 @@ public class BoardManager : MonoBehaviour
         //reveal every tile
         //else, reveal Tile
         //Update UI to reflect where Player is
+    }
+
+    public void SetFlag(Vector2 input)
+    {
+      return;
     }
 
 }
