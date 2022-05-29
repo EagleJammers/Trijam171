@@ -19,7 +19,10 @@ public class BoardManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      //Find Player object by Tag
+      //Instantiate Player then assign it to p
+      //Place it somewhere random inside the Board
+      private int px = Random.Range(0, dimension);
+      private int py = Random.Range(0, dimension);
 
       int tilesunmined = 0;
       //Instantiate Mine objects and insert them into Board array
@@ -27,7 +30,7 @@ public class BoardManager : MonoBehaviour
       {
         for(int y;y<dimensions;y++)
         {
-          //Tile t = Instantiate new Tile
+          Instantiate(tObj, newVector2(0, 0), Quaternion.identity);
           //Board[x][y] = t
           //Move that tile to some place on the UI based on screen size vs how many we have
 
@@ -39,6 +42,7 @@ public class BoardManager : MonoBehaviour
             //if set to false
           //if tiles unmined >= tiles permine, set tilesunmined = 0, set mine flag to true
           //else increase tilesunmined by 1
+          Debug.log("");
 
         }
       }
@@ -59,4 +63,5 @@ public class BoardManager : MonoBehaviour
         //else, reveal Tile
         //Update UI to reflect where Player is
     }
+
 }
