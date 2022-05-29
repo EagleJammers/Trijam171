@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Tile : MonoBehaviour
 {
@@ -9,7 +10,20 @@ public class Tile : MonoBehaviour
     private bool hasFlag;
     private int value;
     private bool collapsed;
+    [SerializeField]
+    private GameObject FlagSprite;
+    [SerializeField]
+    private Text ValueText;
 
+    public void Awake()
+    {
+        hasFlag = false;
+        isVisible = false;
+        collapsed = false;
+
+        value = 0;
+        UpdateText();
+    }
     public bool PlayerMoveCheck() //false denotes a game over due to stepping on a mine
     {
         if (hasMine && hasFlag) //Tile is mined but flagged, so it's travelable
@@ -24,19 +38,28 @@ public class Tile : MonoBehaviour
         return true;
     }
 
-    public void DisplayValue()
+    public void DisplayValueToggle()
     {
-        //TODO: BoardManager calls this to tell the tile to display it's value
+       isVisible = !isVisible;
+        FlagSprite.SetActive(isVisible);
+       
     }
 
-    public void Flag()
+    public void FlagToggle()
     {
-        hasFlag = true;
-        //TODO: Logic to visually spawn a flag
+        
+        hasFlag = !hasFlag;
+        FlagSprite.SetActive(hasFlag);
     }
 
     public void IncrementValue() //Called by board manager when an adjacent mine is discovered
     {
         value++;
+        UpdateText();
+    }
+
+    private void UpdateText()
+    {
+        ValueText.text = value.ToString();
     }
 }
