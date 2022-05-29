@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class BoardManager : MonoBehaviour
 {
+<<<<<<< Updated upstream
     private Tile[][] Board;
     private Player p;
     [serializefield]
+=======
+    private Tile[,] Board;
+    [SerializeField]
+    private PlayerMovement p;
+    [SerializeField]
+>>>>>>> Stashed changes
     private Tile tObj;
 
-    private int dimension = 0;
+    private int dimension = 5;
     private float minePercent = .20f;
     private float minePresent = 0f;
 
@@ -19,6 +26,7 @@ public class BoardManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+      Board = new Tile[dimension,dimension];
       //Instantiate Player then assign it to p
       //Place it somewhere random inside the Board
       private int px = Random.Range(0, dimension);
@@ -30,8 +38,13 @@ public class BoardManager : MonoBehaviour
       {
         for(int y;y<dimensions;y++)
         {
+<<<<<<< Updated upstream
           Instantiate(tObj, newVector2(0, 0), Quaternion.identity);
           //Board[x][y] = t
+=======
+
+          Board[x, y] = Object.Instantiate(tObj, new Vector2(0, 0), Quaternion.identity) as Tile;
+>>>>>>> Stashed changes
           //Move that tile to some place on the UI based on screen size vs how many we have
 
           //Set Mine flag to true or false based on RNG
