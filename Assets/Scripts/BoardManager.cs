@@ -5,8 +5,9 @@ using UnityEngine;
 public class BoardManager : MonoBehaviour
 {
     private Tile[][] Board;
-    private Player p;
-    [serializefield]
+    [SerializeField]
+    private PlayerMovement p;
+    [SerializeField]
     private Tile tObj;
 
     private int dimension = 0;
@@ -14,21 +15,21 @@ public class BoardManager : MonoBehaviour
     private float minePresent = 0f;
 
     private float percentbytile = (float) 1 / (dimension * dimension);
-    private int tilepermine = (int) dimension * dimension * minePercent;
+    private int tilepermine = (int) (dimension * dimension * minePercent);
 
     // Start is called before the first frame update
     void Start()
     {
       //Instantiate Player then assign it to p
       //Place it somewhere random inside the Board
-      private int px = Random.Range(0, dimension);
-      private int py = Random.Range(0, dimension);
+      int px = Random.Range(0, dimension);
+      int py = Random.Range(0, dimension);
 
       int tilesunmined = 0;
       //Instantiate Mine objects and insert them into Board array
-      for(int x;x < dimension;x++)
+      for(int x = 0; x < dimension; x++)
       {
-        for(int y;y<dimensions;y++)
+        for(int y = 0; y < dimension; y++)
         {
           Instantiate(tObj, newVector2(0, 0), Quaternion.identity);
           //Board[x][y] = t
