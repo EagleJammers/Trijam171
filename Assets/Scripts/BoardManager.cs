@@ -4,40 +4,47 @@ using UnityEngine;
 
 public class BoardManager : MonoBehaviour
 {
+<<<<<<< Updated upstream
     private Tile[][] Board;
+    private Player p;
+    [serializefield]
+=======
+    private Tile[,] Board;
     [SerializeField]
     private PlayerMovement p;
     [SerializeField]
+>>>>>>> Stashed changes
     private Tile tObj;
 
-    private int dimension = 0;
+    private int dimension = 5;
     private float minePercent = .20f;
     private float minePresent = 0f;
-    private float percentbytile;
-    private int tilepermine;
-    private int tilesunmined;
-    private int px, py;
 
+    private float percentbytile = (float) 1 / (dimension * dimension);
+    private int tilepermine = (int) dimension * dimension * minePercent;
 
     // Start is called before the first frame update
     void Start()
     {
+      Board = new Tile[dimension,dimension];
       //Instantiate Player then assign it to p
       //Place it somewhere random inside the Board
-      px = Random.Range(0, dimension);
-      py = Random.Range(0, dimension);
+      private int px = Random.Range(0, dimension);
+      private int py = Random.Range(0, dimension);
 
-
-      percentbytile = (float) 1 / (dimension * dimension);
-      tilepermine = (int) (dimension * dimension * minePercent);
-      tilesunmined = 0;
+      int tilesunmined = 0;
       //Instantiate Mine objects and insert them into Board array
-      for(int x = 0; x < dimension; x++)
+      for(int x;x < dimension;x++)
       {
-        for(int y = 0; y < dimension; y++)
+        for(int y;y<dimensions;y++)
         {
-          Instantiate(tObj, new Vector2(0, 0), Quaternion.identity);
+<<<<<<< Updated upstream
+          Instantiate(tObj, newVector2(0, 0), Quaternion.identity);
           //Board[x][y] = t
+=======
+
+          Board[x, y] = Object.Instantiate(tObj, new Vector2(0, 0), Quaternion.identity) as Tile;
+>>>>>>> Stashed changes
           //Move that tile to some place on the UI based on screen size vs how many we have
 
           //Set Mine flag to true or false based on RNG
@@ -48,6 +55,7 @@ public class BoardManager : MonoBehaviour
             //if set to false
           //if tiles unmined >= tiles permine, set tilesunmined = 0, set mine flag to true
           //else increase tilesunmined by 1
+          Debug.log("");
 
         }
       }
