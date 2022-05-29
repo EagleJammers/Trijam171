@@ -5,8 +5,9 @@ using UnityEngine;
 public class credits : MonoBehaviour
 {
     /*
-    credits:
+    credits: (from opengameart.org)
 
     flag art: Gokhan Solak
+    Explosion art: JROB774 ; Joshua Robertson
     */
 }
