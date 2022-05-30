@@ -5,9 +5,8 @@ using UnityEngine;
 public class BoardManager : MonoBehaviour
 {
     private Tile[,] Board;
-    private PlayerMovement player;
     [SerializeField]
-    private PlayerMovement pObj;
+    private PlayerMovement p;
     [SerializeField]
     private Tile tObj;
 
@@ -35,7 +34,7 @@ public class BoardManager : MonoBehaviour
 
 
       //Instantiate Player then assign it to p
-      player = Object.Instantiate(pObj, new Vector2(px, py), Quaternion.identity) as PlayerMovement;
+      p = Object.Instantiate(p, new Vector2(px, py), Quaternion.identity) as PlayerMovement;
     }
 
     private void SpawnMines(){
@@ -133,8 +132,8 @@ public class BoardManager : MonoBehaviour
       */
 
       //where we wanna move
-      int proposed_x = px + direction.x;
-      int proposed_y = py + direction.y;
+      proposed_x = px + direction.x;
+      proposed_y = py + direction.y;
 
       //is it in bounds?
       if(proposed_x > dimension - 1)
