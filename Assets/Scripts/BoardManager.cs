@@ -132,7 +132,7 @@ public class BoardManager : MonoBehaviour
       /*
         checks whether movement would give index out of bounds error
       */
-
+      return true;
       //where we wanna move
       int proposed_x = px + (int)direction.x;
       int proposed_y = py + (int)direction.y;
