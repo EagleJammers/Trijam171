@@ -5,8 +5,9 @@ using UnityEngine;
 public class BoardManager : MonoBehaviour
 {
     private Tile[,] Board;
+    private PlayerMovement player;
     [SerializeField]
-    private PlayerMovement p;
+    private PlayerMovement pObj;
     [SerializeField]
     private Tile tObj;
 
@@ -34,7 +35,7 @@ public class BoardManager : MonoBehaviour
 
 
       //Instantiate Player then assign it to p
-      p = Object.Instantiate(p, new Vector2(px, py), Quaternion.identity) as PlayerMovement;
+      player = Object.Instantiate(pObj, new Vector2(px, py), Quaternion.identity) as PlayerMovement;
     }
 
     private void SpawnMines(){

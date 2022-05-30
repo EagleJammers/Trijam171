@@ -46,7 +46,8 @@ public class Tile : MonoBehaviour
     public void DisplayValueToggle()
     {
        isVisible = !isVisible;
-        FlagSprite.SetActive(isVisible);
+        if(isVisible) UpdateText();
+        else ValueText.text = "";
 
     }
 
