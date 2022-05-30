@@ -10,14 +10,14 @@ public class PlayerMovement : MonoBehaviour
 
     private bool prompting = false;
     private Vector2 movement = new Vector2(0f,0f);
-    //[SerializeField]
-    //BoardManager boardmanager = null;
+    [SerializeField]
+    BoardManager boardmanager = null;
 
     // Start is called before the first frame update
     void Start()
     {
         //Assert.IsTrue(boardmanager != null);
-        //stepsize = boardmanager.stepsize;
+        stepsize = boardmanager.stepsize;
     }
 
     // Update is called once per frame
@@ -51,13 +51,13 @@ public class PlayerMovement : MonoBehaviour
         movement.y = 0;
 
       //check with the boardmanager that this is a valid move first
-      //if(boardmanager.is_valid_move(movement))
-      //{
+      if(boardmanager.IsValidMove(movement))
+      {
         //actually move the player in unity
         this.transform.position += new Vector3(stepsize * movement.x,stepsize * movement.y,0);
         //update the board managers function to move the player in BM's 2d array.
-        //boardmanager.UpdatePlayer(movement);
-      //}
+        boardmanager.UpdatePlayer(movement);
+      }
       //reset movement delta
       movement.x = 0;
       movement.y = 0;
@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
       Vector2 direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
       //force it to be -1,0,1 for x and y just in case
       direction = unit_length_vect2_vars(direction);
-      //boardmanager.SetFlag(direction);
+      boardmanager.SetFlag(direction);
 
       prompting = false;
     }

@@ -124,4 +124,10 @@ public class BoardManager : MonoBehaviour
       }
 
     }
+    public bool IsValidMove(Vector2 direction)
+    {
+      //checks whether movement would give index out of bounds error
+
+      return true;
+    }
 }
