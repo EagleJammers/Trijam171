@@ -115,9 +115,9 @@ public class BoardManager : MonoBehaviour
       else if(y == dimension-1) vcap--;
 
 
-      for(int a = x-1; a =< hcap; a++)
+      for(int a = x-1; a <= hcap; a++)
       {
-        for(int b = y-1; b =< vcap; b++)
+        for(int b = y-1; b <= vcap; b++)
         {
             Board[a, b].IncrementValue();
         }
