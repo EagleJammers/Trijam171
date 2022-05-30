@@ -32,14 +32,8 @@ public class BoardManager : MonoBehaviour
       SpawnMines();
 
 
-            //Instantiate Player then assign it to p
-            p = Object.Instantiate(p, new Vector2(0,0), Quaternion.identity) as PlayerMovement;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+      //Instantiate Player then assign it to p
+      p = Object.Instantiate(p, new Vector2(px, py), Quaternion.identity) as PlayerMovement;
     }
 
     private void SpawnMines(){
@@ -75,7 +69,6 @@ public class BoardManager : MonoBehaviour
           //if comparison is false
           else
           {
-
               //increase tilesunmined by 1
               tilesunmined++;
           }
@@ -85,17 +78,24 @@ public class BoardManager : MonoBehaviour
 
     public bool UpdatePlayer(Vector2 direction)
     {
-      return true;
-      //return true if movement is valid
-      //return false if movement is invalid
-      //game over if the tile is a mine
+      int newx = px + direction.x;
+      int newy = py + direction.y;
 
-      //Check if player is moving off the board (x or y changing to be > dimension-1 or < 0)
-      //Check if Tile has mine and is not Flagged at place player is going
+      //game over
+      if (!Board[newx, newy].PlayerMoveCheck());
         //if true blow him up
         //reveal every tile
         //else, reveal Tile
         //Update UI to reflect where Player is
+
+      if (newx > dimension - 1 || newx < 0) return false;
+      if (newy > dimension - 1 || newy < 0) return false;
+
+      return true;
+      //return true if movement is valid
+
+      //Check if player is moving off the board (x or y changing to be > dimension-1 or < 0)
+      //Check if Tile has mine and is not Flagged at place player is going
     }
 
     public void SetFlag(Vector2 input)
@@ -115,9 +115,9 @@ public class BoardManager : MonoBehaviour
       else if(y == dimension-1) vcap--;
 
 
-      for(int a = x-1; a < hcap; a++)
+      for(int a = x-1; a =< hcap; a++)
       {
-        for(int b = y-1; b < vcap; b++)
+        for(int b = y-1; b =< vcap; b++)
         {
             Board[a, b].IncrementValue();
         }
