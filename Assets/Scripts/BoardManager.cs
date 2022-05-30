@@ -128,8 +128,27 @@ public class BoardManager : MonoBehaviour
     }
     public bool IsValidMove(Vector2 direction)
     {
-      //checks whether movement would give index out of bounds error
+      /*
+        checks whether movement would give index out of bounds error
+      */
 
+      //where we wanna move
+      proposed_x = px + direction.x;
+      proposed_y = py + direction.y;
+
+      //is it in bounds?
+      if(proposed_x > dimension - 1)
+        //not in bounds
+        return false;
+      if(proposed_y > dimension - 1)
+        return false;
+      if(proposed_x < 0)
+        return false;
+      if(proposed_y < 0)
+        return false;
+
+
+      //its in bounds
       return true;
     }
 }
