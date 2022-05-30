@@ -1,22 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
-    int stepsize = 1;
+    float stepsize = 1;
 
-    private boolean prompting = false;
-    private Vector2 movement = new Vector3(0f,0f);
-    [SerializeField]
-    BoardManager boardmanager = null;
+    private bool prompting = false;
+    private Vector2 movement = new Vector2(0f,0f);
+    //[SerializeField]
+    //BoardManager boardmanager = null;
 
     // Start is called before the first frame update
     void Start()
     {
-        Assert.IsTrue(boardmanager != null);
-        stepsize = boardmanager.stepsize;
+        //Assert.IsTrue(boardmanager != null);
+        //stepsize = boardmanager.stepsize;
     }
 
     // Update is called once per frame
@@ -29,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
           move();
         }
         else
-          prompt_flag_direction();
+          place_flag();
       }
       //prompt the user
       if(Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire1"))
@@ -41,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
       }
     }
     private void move(){
-      movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+      movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
       //make the movement either 1 or -1
       movement = unit_length_vect2_vars(movement);
 
@@ -55,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         //actually move the player in unity
         this.transform.position += new Vector3(stepsize * movement.x,stepsize * movement.y,0);
         //update the board managers function to move the player in BM's 2d array.
-        boardmanager.updatePlayer(movement);
+        //boardmanager.UpdatePlayer(movement);
       //}
       //reset movement delta
       movement.x = 0;
@@ -78,13 +79,14 @@ public class PlayerMovement : MonoBehaviour
           the user that they need to choose a direction to place a flag
         */
     }
-    private void place_flag(Vector2 direction){
+    private void place_flag(){
       /*
         this function will make a call to boardmanager to spawn a flag in a direction relative to player.
       */
+      Vector2 direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
       //force it to be -1,0,1 for x and y just in case
       direction = unit_length_vect2_vars(direction);
-      boardmanager.SetFlag(direction);
+      //boardmanager.SetFlag(direction);
 
       prompting = false;
     }

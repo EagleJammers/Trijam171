@@ -79,7 +79,7 @@ public class BoardManager : MonoBehaviour
       }
     }
 
-    public bool UpdatePlayer()
+    public bool UpdatePlayer(Vector2 direction)
     {
       return true;
       //return true if movement is valid
