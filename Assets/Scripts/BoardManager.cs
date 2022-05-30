@@ -133,8 +133,8 @@ public class BoardManager : MonoBehaviour
       */
 
       //where we wanna move
-      proposed_x = px + direction.x;
-      proposed_y = py + direction.y;
+      int proposed_x = px + direction.x;
+      int proposed_y = py + direction.y;
 
       //is it in bounds?
       if(proposed_x > dimension - 1)
