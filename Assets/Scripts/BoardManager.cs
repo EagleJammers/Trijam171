@@ -77,30 +77,6 @@ public class BoardManager : MonoBehaviour
       }
     }
 
-    public bool UpdatePlayer(Vector2 direction)
-    {
-      int newx = px + (int)direction.x;
-      int newy = py + (int)direction.y;
-
-      //game over
-      if (!Board[newx, newy].PlayerMoveCheck());
-        //if true blow him up
-        //reveal every tile
-        //else, reveal Tile
-        //Update UI to reflect where Player is
-
-      if (newx > dimension - 1 || newx < 0) return false;
-      if (newy > dimension - 1 || newy < 0) return false;
-
-      px = newx;
-      py = newy;
-      return true;
-      //return true if movement is valid
-
-      //Check if player is moving off the board (x or y changing to be > dimension-1 or < 0)
-      //Check if Tile has mine and is not Flagged at place player is going
-    }
-
     public void SetFlag(Vector2 input)
     {
       return;
@@ -129,27 +105,25 @@ public class BoardManager : MonoBehaviour
     }
     public bool IsValidMove(Vector2 direction)
     {
-      /*
-        checks whether movement would give index out of bounds error
-      */
+      int newx = px + (int)direction.x;
+      int newy = py + (int)direction.y;
 
-      //where we wanna move
-      int proposed_x = px + (int)direction.x;
-      int proposed_y = py + (int)direction.y;
+      //game over
+      if (!Board[newx, newy].PlayerMoveCheck());
+        //if true blow him up
+        //reveal every tile
+        //else, reveal Tile
+        //Update UI to reflect where Player is
 
-      //is it in bounds?
-      if(proposed_x > dimension - 1)
-        //not in bounds
-        return false;
-      if(proposed_y > dimension - 1)
-        return false;
-      if(proposed_x < 0)
-        return false;
-      if(proposed_y < 0)
-        return false;
+      if (newx > dimension - 1 || newx < 0) return false;
+      if (newy > dimension - 1 || newy < 0) return false;
 
-
-      //its in bounds
+      px = newx;
+      py = newy;
       return true;
+      //return true if movement is valid
+
+      //Check if player is moving off the board (x or y changing to be > dimension-1 or < 0)
+      //Check if Tile has mine and is not Flagged at place player is going
     }
 }
