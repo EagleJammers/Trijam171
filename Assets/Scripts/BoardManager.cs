@@ -79,8 +79,8 @@ public class BoardManager : MonoBehaviour
 
     public bool UpdatePlayer(Vector2 direction)
     {
-      int newx = px + direction.x;
-      int newy = py + direction.y;
+      int newx = px + (int)direction.x;
+      int newy = py + (int)direction.y;
 
       //game over
       if (!Board[newx, newy].PlayerMoveCheck());
