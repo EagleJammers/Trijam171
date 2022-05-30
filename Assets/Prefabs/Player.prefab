@@ -98,3 +98,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stepsize: 1
+  boardmanager: {fileID: 8478830574029567262, guid: f3e690242ac304d1590ee13abdd27297, type: 3}
