@@ -64,6 +64,7 @@ public class BoardManager : MonoBehaviour
               minesPresent += percentbytile;
               tilesunmined = 0;
               Board[x, y].setMine();
+              IncrementTiles(x, y);
 
               // TODO increment neightbor tiles
           }
@@ -98,4 +99,25 @@ public class BoardManager : MonoBehaviour
       return;
     }
 
+    private void IncrementTiles(int x, int y)
+    {
+      int hcap = 1+x;
+      int vcap = 1+y;
+
+      if(x == 0) x++;
+      else if(x == dimension - 1) hcap--;
+
+      if(y==0) y++;
+      else if(y == dimension-1) vcap--;
+
+
+      for(int a = x-1; a < hcap; a++)
+      {
+        for(int b = y-1; b < vcap; b++)
+        {
+            Board[a, b].IncrementValue();
+        }
+      }
+
+    }
 }
