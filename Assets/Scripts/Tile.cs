@@ -26,10 +26,7 @@ public class Tile : MonoBehaviour
     }
     public bool PlayerMoveCheck() //false denotes a game over due to stepping on a mine
     {
-        if (hasMine && hasFlag) //Tile is mined but flagged, so it's travelable
-            return true;
-
-        if (hasMine) //Game over!
+        if (hasMine && !hasFlag) //Tile is mined but flagged, so it's travelable
             return false;
 
         if (!collapsed) //Tile is stepped on, and has never been traveled on before
@@ -46,8 +43,7 @@ public class Tile : MonoBehaviour
     public void DisplayValueToggle()
     {
        isVisible = !isVisible;
-        if(isVisible) UpdateText();
-        else ValueText.text = "";
+        FlagSprite.SetActive(isVisible);
 
     }
 
