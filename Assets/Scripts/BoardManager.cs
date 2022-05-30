@@ -49,6 +49,8 @@ public class BoardManager : MonoBehaviour
           Board[x, y] = Object.Instantiate(tObj, new Vector2(0, 0), Quaternion.identity) as Tile;
 
           //TODO Scale and Move that tile to some place on the UI based on screen size vs how many we have
+          Board[x,y].transform.position = new Vector3(stepsize * x, stepsize * y, 0f);
+
         }
       }
 
