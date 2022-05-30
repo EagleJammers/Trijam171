@@ -92,6 +92,8 @@ public class BoardManager : MonoBehaviour
       if (newx > dimension - 1 || newx < 0) return false;
       if (newy > dimension - 1 || newy < 0) return false;
 
+      px = newx;
+      py = newy;
       return true;
       //return true if movement is valid
 
