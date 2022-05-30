@@ -28,10 +28,12 @@ public class BoardManager : MonoBehaviour
       int px = Random.Range(0, dimension);
       int py = Random.Range(0, dimension);
 
-      //Instantiate Player then assign it to p
-      p = Object.Instantiate(p, new Vector2(0,0), Quaternion.identity) as PlayerMovement;
 
       SpawnMines();
+
+
+            //Instantiate Player then assign it to p
+            p = Object.Instantiate(p, new Vector2(0,0), Quaternion.identity) as PlayerMovement;
     }
 
     // Update is called once per frame

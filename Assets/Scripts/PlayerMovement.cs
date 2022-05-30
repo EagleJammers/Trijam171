@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
       //take our input and store it
       if(Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
