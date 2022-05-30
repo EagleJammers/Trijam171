@@ -18,6 +18,7 @@ public class BoardManager : MonoBehaviour
 
     private float percentbytile;
     private int tilepermine;
+    private int px, py;
 
     // Start is called before the first frame update
     void Start()
@@ -25,8 +26,8 @@ public class BoardManager : MonoBehaviour
       Board = new Tile[dimension,dimension];
       percentbytile = (float) 1 / (dimension * dimension);
       tilepermine = (int) (dimension * dimension * minePercent);
-      int px = Random.Range(0, dimension);
-      int py = Random.Range(0, dimension);
+      px = Random.Range(0, dimension);
+      py = Random.Range(0, dimension);
 
 
       SpawnMines();
@@ -78,8 +79,8 @@ public class BoardManager : MonoBehaviour
 
     public bool UpdatePlayer(Vector2 direction)
     {
-      int newx = px + direction.x;
-      int newy = py + direction.y;
+      int newx = px + (int)direction.x;
+      int newy = py + (int)direction.y;
 
       //game over
       if (!Board[newx, newy].PlayerMoveCheck());
